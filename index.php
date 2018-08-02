@@ -21,10 +21,11 @@
         </div>
         <div class="form-group">
             <label for="message">Votre message</label>
-            <textarea class="form-control" id="message" name="msg" maxlength="500" rows="5" required></textarea>
+            <textarea class="form-control" id="message" name="msg" maxlength="500" rows="5"></textarea>
         </div>
         <button type="submit" class="btn btn-danger">Envoyez</button>
     </form>
+    <br>
     
     <?php
     
@@ -32,11 +33,24 @@
     $to = $_POST['email'];
     $subject = $_POST['sub'];
     $message = $_POST['msg'];
-    $headers = 'From: webmaster@example.com' . "\r\n" .
-     'Reply-To: webmaster@example.com' . "\r\n" .
+    $headers = 'From: geoffrey.frioli@webmaster.com' . "\r\n" .
+     'Reply-To: geoffrey.frioli@webmaster.com' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
 
     mail($to, $subject, $message, $headers);
+        function emptyMsg($message) {
+            if (!$message) {
+                throw new Exception('Le message est vide');
+            } else {
+                echo '<p class="text-center text-danger">Message bien envoyé</p>';
+            }
+            
+        }
+        try {
+            emptyMsg($_POST['msg']);
+        }catch (Exception $e) {
+            echo '<p class="text-center text-danger">Message d\'erreur : ', $e->getMessage().'</p>';
+        }
     }
 
     ?>
