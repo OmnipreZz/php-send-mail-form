@@ -33,11 +33,13 @@
     $to = $_POST['email'];
     $subject = $_POST['sub'];
     $message = $_POST['msg'];
-    $headers = 'From: geoffrey.frioli@webmaster.com' . "\r\n" .
-     'Reply-To: geoffrey.frioli@webmaster.com' . "\r\n" .
+    $headers = 'From: omni@webmaster.com' . "\r\n" .
+     'Reply-To: omni@webmaster.com' . "\r\n" .
      'X-Mailer: PHP/' . phpversion();
 
     mail($to, $subject, $message, $headers);
+
+        //exception qui test si le message est vide !!
         function emptyMsg($message) {
             if (!$message) {
                 throw new Exception('Le message est vide');
